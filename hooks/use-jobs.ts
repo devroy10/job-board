@@ -1,4 +1,3 @@
-// app/hooks/useJobs.ts
 import { useQuery } from '@tanstack/react-query';
 
 const fetchJobs = async () => {

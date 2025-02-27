@@ -20,11 +20,11 @@ interface ApplicationModalProps {
 
 interface ApplicationDetails {
   skills: string[]
-  additionalNotes: string
+  additionalNotes: stringl
 }
 
 export function ApplicationModal({ isOpen, onClose, jobId }: ApplicationModalProps) {
-  const { jobs, userProfile } = useJobStore() // ✅ Fetch Zustand store
+  const { jobs, userProfile } = useJobStore()
   const [step, setStep] = useState(1)
   const [applicationDetails, setApplicationDetails] = useState<ApplicationDetails>({
     skills: [],

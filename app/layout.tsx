@@ -2,6 +2,20 @@ import { NavBar } from "@/components/nav-bar"
 import type { Metadata } from 'next'
 import './globals.css'
 
+import { Noto_Sans } from 'next/font/google'
+import { Raleway } from 'next/font/google';
+import { MobileNav } from "@/components/mobile-nav";
+
+
+const noto = Noto_Sans({
+  subsets: ['latin'],
+  variable: '--font-noto',
+  display: 'swap',
+})
+
+const raleway = Raleway({ subsets: ['latin'], fallback: ['sans-serif'] });
+
+
 // import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export const metadata: Metadata = {
@@ -15,11 +29,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <NavBar/>
+    <html lang="en" className={`${noto.variable}`}>
+      <body className={`${raleway.className} pb-12 md:pb-0 `}>
+        <NavBar />
+        <MobileNav />
         {children}
-        </body>
+      </body>
     </html>
   )
 }

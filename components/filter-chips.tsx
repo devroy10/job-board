@@ -12,7 +12,7 @@ interface FilterChipsProps {
 
 export function FilterChips({ filters, onRemoveFilter, onClearAll }: FilterChipsProps) {
   return (
-    <div className="flex items-center gap-4 mb-4">
+    <div className=" gap-4 mb-4">
       <div className="flex gap-2 flex-wrap">
         <AnimatePresence>
           {filters.map((filter) => (

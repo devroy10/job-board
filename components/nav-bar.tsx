@@ -5,9 +5,11 @@ import { usePathname } from "next/navigation"
 import { ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import {useIsMobile} from "@/hooks/use-mobile"
 
 export function NavBar() {
   const pathname = usePathname()
+  const isMobile = useIsMobile()
 
   return (
     <header className="border-b">
@@ -20,7 +22,7 @@ export function NavBar() {
               <div className="text-xs text-muted-foreground">Land a job</div>
             </div>
           </Link>
-          <nav className="flex gap-6 ml-8">
+          <nav className="hidden lg:flex gap-6 ml-8">
             <Link
               href="/profile"
               className={cn("text-sm font-medium", pathname === "/profile" && "text-emerald-600")}

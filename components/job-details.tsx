@@ -7,7 +7,7 @@ import { ApplicationModal } from "./application-modal"
 
 interface JobDetailsProps {
   job?: {
-    id: string // ✅ Ensure job ID is included
+    id: string 
     company: string
     logo: string
     title: string
@@ -63,7 +63,7 @@ export function JobDetails({ job, isVisible }: JobDetailsProps) {
               </div>
             </div>
 
-            {/* ✅ Pass jobId to ApplicationModal */}
+            {/* Pass jobId to ApplicationModal */}
             <Button
               className="w-full bg-emerald-600 hover:bg-emerald-700"
               onClick={() => setIsApplicationModalOpen(true)}
@@ -77,7 +77,7 @@ export function JobDetails({ job, isVisible }: JobDetailsProps) {
       <ApplicationModal
         isOpen={isApplicationModalOpen}
         onClose={() => setIsApplicationModalOpen(false)}
-        jobId={job.id} // ✅ Ensure ApplicationModal receives jobId
+        jobId={job.id} //  Ensure ApplicationModal receives jobId
       />
     </>
   )

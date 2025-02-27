@@ -10,7 +10,6 @@ export interface Job {
   requirements: string[]
   requiredSkills: string[]
 }
-
 export interface UserProfile {
   name: string
   email: string
@@ -18,10 +17,8 @@ export interface UserProfile {
   skills: string[]
   applications: Application[]
   preferredLocation: string[]
-  preferredSalary: { min: number; max: number } // Ensure consistent structure
+  preferredSalary: { min: number; max: number } 
 }
-
-
 export interface Application {
   id: string
   jobId: string

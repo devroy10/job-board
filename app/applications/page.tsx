@@ -5,13 +5,13 @@ import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ApplicationCard } from "@/components/application-card";
-import { useJobStore } from "@/store/job-store"; // ✅ Import Zustand store
+import { useJobStore } from "@/store/job-store"; 
 import type { ApplicationStatus } from "@/types";
 
 export default function ApplicationsPage() {
   const searchParams = useSearchParams();
-  const { userProfile } = useJobStore(); // ✅ Get userProfile from Zustand
-  const applications = userProfile.applications || []; // ✅ Use Zustand applications
+  const { userProfile } = useJobStore(); 
+  const applications = userProfile.applications || []; 
 
   const [highlightedId, setHighlightedId] = useState<string | null>(
     searchParams.get("highlight")
@@ -24,7 +24,7 @@ export default function ApplicationsPage() {
     }
   }, [highlightedId]);
 
-  // ✅ Fix filtering to avoid crashing when no applications exist
+  // Fix filtering to avoid crashing when no applications exist
   const filterApplications = (status: ApplicationStatus) => {
     return applications?.filter((app) => app.status === status) || [];
   };
