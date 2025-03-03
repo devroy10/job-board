@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { SearchSection } from "@/components/search-section"
 import { FilterChips } from "@/components/filter-chips"
@@ -11,6 +11,7 @@ import { useIsMobile } from "@/hooks/use-mobile"
 import {
   Drawer,
   DrawerContent,
+  DrawerTitle,
 } from "@/components/ui/drawer"
 
 export default function JobBoard() {
@@ -26,6 +27,15 @@ export default function JobBoard() {
   const isMobile = useIsMobile()
   const { jobs } = useJobStore()
 
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setWindowWidth(window.innerWidth);
+      window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
+    }
+  }, []);
+
   const handleFilterRemove = (filter: string) => {
     setActiveFilters(activeFilters.filter((f) => f !== filter))
   }
@@ -37,6 +47,7 @@ export default function JobBoard() {
   const handleJobCardClick = (jobId: string) => {
     setSelectedJob(selectedJob === jobId ? null : jobId);
   };
+
 
   return (
     <div className="min-h-screen bg-background gap-2 py-4">
@@ -51,8 +62,9 @@ export default function JobBoard() {
         ) : (
           <FilterChips filters={activeFilters} onRemoveFilter={handleFilterRemove} onClearAll={handleClearFilters} />
         )}
-        <div className="grid md:grid-cols-[240px_1fr_320px] gap-6">
-          {/* Sidebar */}
+        <div className="grid slg:grid-cols-[240px_1fr_320px] lg:grid-cols-[240px_1fr_320px] gap-6">
+
+          {/* Filter selections in left panel */}
           {!isMobile && (
             <div className="space-y-6">
               <div className="space-y-2">
@@ -79,7 +91,7 @@ export default function JobBoard() {
             </div>
           )}
 
-          {/* Job Listings */}
+          {/* Job Listings in middle panel */}
           <div className="space-y-4">
             {jobs.map((job, i) => (
               <JobCard
@@ -91,10 +103,11 @@ export default function JobBoard() {
             ))}
           </div>
 
-          {/* Job Details */}
-          {isMobile ? (
+          {/* Job Details in right panel */}
+          {isMobile || windowWidth <= 960 ? (
             <Drawer open={selectedJob !== null} onOpenChange={() => setSelectedJob(null)}>
               <DrawerContent className="overflow-y-scrolls">
+                <DrawerTitle className="DialogTitle hidden">job details drawer</DrawerTitle>
                 <JobDetails job={jobs.find((job) => job.id === selectedJob)} isVisible={true} />
               </DrawerContent>
             </Drawer>
