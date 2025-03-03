@@ -20,7 +20,7 @@ interface ApplicationModalProps {
 
 interface ApplicationDetails {
   skills: string[]
-  additionalNotes: stringl
+  additionalNotes: string
 }
 
 export function ApplicationModal({ isOpen, onClose, jobId }: ApplicationModalProps) {
@@ -81,11 +81,11 @@ export function ApplicationModal({ isOpen, onClose, jobId }: ApplicationModalPro
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-[600px]">
         <div className="relative">
-          {/* ✅ Match Score Badge */}
-          <div className="absolute top-4 right-4">
+          {/* Match Score Badge */}
+          <div className="flex justify-center pb-4">
             <MatchScoreBadge score={matchScore} />
           </div>
-          {/* Stepper */}
+          {/* Stepper header */}
           <div className="mb-8">
             <div className="flex justify-between items-center">
               {steps.map((s, i) => (
@@ -285,7 +285,7 @@ function StepTwo({
           ))}
         </div>
       </div>
-      
+
       <div className="flex justify-end gap-3">
         <Button variant="outline" onClick={onBack}>
           Back
